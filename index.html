@@ -6,6 +6,8 @@
     <!-- 添加移动端视口设置让页面在移动端显示不会被缩放 meta:vp -->
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>移动jd主页</title>
+    <!-- 1. 引包 引入swiper的样式 -->
+    <link rel="stylesheet" href="lib/swiper/css/swiper.css">
     <!-- 1. 引入jd主页的less样式文件  注意把rel="stylesheet/less" -->
     <link rel="stylesheet/less" href="less/index.less">
     <!-- 2. 引入一个less.js编译器文件  less.js依赖了less 要编译less 先引入less在引入less.js-->
@@ -21,14 +23,80 @@
         <form action="#">
             <a href="#" class="icon-search"></a>
             <!-- type="search"输入框的类型search搜索框 tel电话框 number数字框 email邮箱
-			search可以让打字的右下角的回车文字变成搜索 -->
+            search可以让打字的右下角的回车文字变成搜索 -->
             <input type="search" placeholder="请输入要搜索的商品">
         </form>
         <a href="#" class="login">登录</a>
     </header>
     <!-- 轮播图区域 -->
     <section id="slide">
-        <img src="https://i8.mifile.cn/v1/a1/3717c032-d8d6-c683-8daf-a55f5828ee5d!720x360.webp" alt="">
+        <!-- 2. 写swiper结构 -->
+        <!-- 轮播图大容器 -->
+        <div class="swiper-container">
+            <!-- 所有图片容器 -->
+            <div class="swiper-wrapper">
+                <!-- 每个轮播图 -->
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="images/l1.jpg" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="images/l2.jpg" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="images/l3.jpg" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="images/l4.jpg" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="images/l5.jpg" alt="">
+                    </a>
+                </div>
+            </div>
+            <!-- 小圆点容器 -->
+            <div class="swiper-pagination"></div>
+        </div>
+        <!-- <ul>
+            <li>
+                <a href="#"><img src="images/l8.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="#"><img src="images/l1.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="#"><img src="images/l2.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="#"><img src="images/l3.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="#"><img src="images/l4.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="#"><img src="images/l5.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="#"><img src="images/l6.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="#"><img src="images/l7.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="#"><img src="images/l8.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="#"><img src="images/l1.jpg" alt=""></a>
+            </li>
+        </ul> -->
     </section>
     <!-- 导航区域 -->
     <nav id="nav">
@@ -227,6 +295,8 @@
             </li>
         </ul>
     </footer>
+    <!-- 1. 引入swiper的JS -->
+    <script src="lib/swiper/js/swiper.js"></script>
     <!-- 3. 引入jd主页的JS -->
     <script src="js/index.js"></script>
 </body>

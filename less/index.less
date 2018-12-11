@@ -1,64 +1,23 @@
 /* 引入公共样式初始化代码 */
 
 @import 'base.less';
-#header {
-    /* 使用伸缩布局 实现左右2边固定中间自适应 */
-    display: flex;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    .icon-logo {
-        width: 80px;
-        height: 45px;
-        padding: 10px;
-        /* 为了让a更大更好点击 a会比较大 但是图标没有那么大居中显示
-        背景图默认无法跟随padding 设置背景图定位和裁切让背景图跟着动
-        jd官网在里面嵌套一个span给span添加margin 挤到中间(这种不好) */
-        /* 大的精灵图  大图是2倍图是400*400 使用缩小一半变成200*200*/
-        background-image: url(../images/sprites.png);
-        background-size: 200px 200px;
-        background-position: 0 -108px;       
-        /* 这两属性一般会结合起来使用 为了让背景图也跟着padding来动 */
-        /* 背景图定位起点 默认padding-box  设成content-box参照内容来 作为背景定位起点 */
-        background-origin: content-box;
-        /* 背景图的裁切 默认值border-box  设置content-box 可以裁切掉 除了内容区域以外的背景图 */
-        background-clip: content-box;
-    }
-    form {
-        flex: 1;
-        padding: 5px 0;
-        position: relative;
-        /* 搜索图标 */
-        .icon-search {
-            width: 20px;
-            height: 20px;
-            background-image: url(../images/sprites.png);
-            background-size: 200px 200px;
-            background-position: -60px -108px;
-            position: absolute;
-            left: 5px;
-    			top: 12px;
-        }
-        input {
-            width: 100%;
-            height: 35px;
-            border-radius: 16px;
-            padding-left: 30px;
-        }
-    }
-    .login {
-        width: 50px;
-        height: 45px;
-        color:#fff;
-        text-align: center;
-        line-height: 45px;
-    }
-}
 
 #slide{
+	ul{
+		width: 1000vw;
+		display:flex;
+		transform:translateX(-100vw);
+	}
+	li{
+		width: 100vw;
+	}
+	/* 3. 设置样式 */
 	img{
 		width: 100vw;
+	}
+	/* 覆盖小圆点的样式 */
+	.swiper-pagination-bullet-active{
+		background-color: #fff;
 	}
 }
 
@@ -209,26 +168,3 @@
 	}
 }
 
-/* 底部区域 */
-#footer{
-	position: fixed;
-	width: 100vw;
-	bottom: 0;
-	left: 0;
-	z-index: 999;
-	background-color: #fff;
-	>ul{
-		display:flex;
-		>li{
-			width: 25vw;
-			>a{
-				display: block;
-				text-align: center;
-				>img{
-					width: 65px;
-					height: 50px;
-				}
-			}
-		}
-	}
-}

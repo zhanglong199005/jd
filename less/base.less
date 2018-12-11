@@ -1,5 +1,6 @@
 /* 定义jd主题色变量 */
-@main-color:#de181b;
+
+@main-color: #de181b;
 
 /* 1. 放样式初始化 */
 
@@ -20,7 +21,10 @@ select {
     /* 另外，select加上这个属性后，select的高度就可以改变了 */
     -webkit-appearance: none;
 }
+
+
 /* 去掉小圆点 */
+
 li {
     list-style: none;
 }
@@ -236,7 +240,6 @@ input[type="search"]::-webkit-search-decoration {
     -webkit-appearance: none;
 }
 
-
 legend {
     border: 0;
     padding: 0;
@@ -333,16 +336,124 @@ textarea::-webkit-input-placeholder {
 
 /* 2. 放所有页面都会用到公共类 */
 
+
 /* 边框的公共类名 */
-.bt{
-	border-top: 1px solid #ccc;
+
+.bt {
+    border-top: 1px solid #ccc;
 }
-.bb{
-	border-bottom: 1px solid #ccc;
+
+.bb {
+    border-bottom: 1px solid #ccc;
 }
-.bl{
-	border-left: 1px solid #ccc;
+
+.bl {
+    border-left: 1px solid #ccc;
 }
-.br{
-	border-right: 1px solid #ccc;
+
+.br {
+    border-right: 1px solid #ccc;
+}
+
+
+/* 头部的公共样式 */
+
+#header {
+    /* 使用伸缩布局 实现左右2边固定中间自适应 */
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    z-index: 999;
+    /* 提取公共样式 类名都以icon- (或者中间包含了空格icon-)开头都设置背景图和大小 定位原点 和裁切 */
+    [class^="icon-"] ,[class*=" icon-"] {
+        /* 为了让a更大更好点击 a会比较大 但是图标没有那么大居中显示
+        背景图默认无法跟随padding 设置背景图定位和裁切让背景图跟着动
+        jd官网在里面嵌套一个span给span添加margin 挤到中间(这种不好) */
+        /* 大的精灵图  大图是2倍图是400*400 使用缩小一半变成200*200*/
+        background-image: url(../images/sprites.png);
+        background-size: 200px 200px;
+        /* 这两属性一般会结合起来使用 为了让背景图也跟着padding来动 */
+        /* 背景图定位起点 默认padding-box  设成content-box参照内容来 作为背景定位起点 */
+        background-origin: content-box;
+        /* 背景图的裁切 默认值border-box  设置content-box 可以裁切掉 除了内容区域以外的背景图 */
+        background-clip: content-box;
+    }
+    .icon-logo {
+        width: 80px;
+        height: 45px;
+        padding: 10px;
+        background-position: 0 -108px;
+    }
+    .icon-back {
+        width: 40px;
+        height: 40px;
+        background-position: -20px 0px;
+        padding: 10px;
+    }
+    form {
+        flex: 1;
+        padding: 5px 0;
+        position: relative;
+        /* 搜索图标 */
+        .icon-search {
+            width: 20px;
+            height: 20px;
+            background-image: url(../images/sprites.png);
+            background-size: 200px 200px;
+            background-position: -60px -108px;
+            position: absolute;
+            left: 5px;
+            top: 12px;
+        }
+        input {
+            width: 100%;
+            height: 35px;
+            border-radius: 16px;
+            padding-left: 30px;
+        }
+    }
+    .login {
+        width: 50px;
+        height: 45px;
+        color: #fff;
+        text-align: center;
+        line-height: 45px;
+    }
+    .icon-menu {
+        width: 40px;
+        height: 40px;
+        background-position: -60px 0px;
+        padding: 10px;
+    }
+}
+
+
+/* 底部的公共样式 */
+
+
+/* 底部区域 */
+
+#footer {
+    position: fixed;
+    width: 100vw;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    background-color: #fff;
+    >ul {
+        display: flex;
+        >li {
+            width: 25vw;
+            >a {
+                display: block;
+                text-align: center;
+                >img {
+                    width: 65px;
+                    height: 50px;
+                }
+            }
+        }
+    }
 }
