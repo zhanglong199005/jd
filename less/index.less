@@ -1,0 +1,234 @@
+/* 引入公共样式初始化代码 */
+
+@import 'base.less';
+#header {
+    /* 使用伸缩布局 实现左右2边固定中间自适应 */
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    .icon-logo {
+        width: 80px;
+        height: 45px;
+        padding: 10px;
+        /* 为了让a更大更好点击 a会比较大 但是图标没有那么大居中显示
+        背景图默认无法跟随padding 设置背景图定位和裁切让背景图跟着动
+        jd官网在里面嵌套一个span给span添加margin 挤到中间(这种不好) */
+        /* 大的精灵图  大图是2倍图是400*400 使用缩小一半变成200*200*/
+        background-image: url(../images/sprites.png);
+        background-size: 200px 200px;
+        background-position: 0 -108px;       
+        /* 这两属性一般会结合起来使用 为了让背景图也跟着padding来动 */
+        /* 背景图定位起点 默认padding-box  设成content-box参照内容来 作为背景定位起点 */
+        background-origin: content-box;
+        /* 背景图的裁切 默认值border-box  设置content-box 可以裁切掉 除了内容区域以外的背景图 */
+        background-clip: content-box;
+    }
+    form {
+        flex: 1;
+        padding: 5px 0;
+        position: relative;
+        /* 搜索图标 */
+        .icon-search {
+            width: 20px;
+            height: 20px;
+            background-image: url(../images/sprites.png);
+            background-size: 200px 200px;
+            background-position: -60px -108px;
+            position: absolute;
+            left: 5px;
+    			top: 12px;
+        }
+        input {
+            width: 100%;
+            height: 35px;
+            border-radius: 16px;
+            padding-left: 30px;
+        }
+    }
+    .login {
+        width: 50px;
+        height: 45px;
+        color:#fff;
+        text-align: center;
+        line-height: 45px;
+    }
+}
+
+#slide{
+	img{
+		width: 100vw;
+	}
+}
+
+/* 导航条区域的样式 */
+#nav{
+	padding:10px 0;
+	.nav-tabs{
+		display:flex;
+		/* flex换行 */
+		flex-wrap:wrap;
+		>li{
+			/* 伸缩布局加了宽度太多了放不下宽度无法生效 给元素添加flex换行就能生效 */
+			width: 25vw;
+			>a{
+				display: block;
+				text-align: center;
+				>img{
+					width: 40px;
+					height: 40px;
+				}
+				>p{
+					margin: 5px 0;
+				}
+			}
+		}
+	}
+}
+
+/* 商品的主体样式 */
+#main{
+	/* 为了让内容往上挤不要和底部重叠在一起 */
+	padding-bottom: 50px;
+	/* 秒杀区域 */
+	.jd-seckill{
+		padding: 10px 0;
+		box-shadow: 0px 0px 2px #666;
+		/* 秒杀的标题 */
+		.seckill-title{
+			display:flex;
+			position: relative;
+			> img{
+				width: 20px;
+				height: 25px;
+				margin-left: 10px;
+			}
+			> span{
+				color:@main-color;
+				margin-left: 10px;
+			}
+			.seckill-time{
+				margin-left: 10px;
+				/* 使用not排除选择器 排除中间3的倍数的元素 */
+				span:not(:nth-child(3n)){
+					background-color: #000;
+					color:#fff;
+					width: 15px;
+					display: inline-block;
+					text-align: center;
+				}
+			}
+			.seckill-more{
+				position: absolute;
+				right: 10px;
+				top: 0;
+				&::after{
+					content:'>';
+				}
+			}
+		}
+		/* 秒杀的内容 */
+		.seckill-content{
+			padding-top:10px;
+			> ul{
+				display:flex;
+				/* 注意如果父元素有padding导致内宽度和视口宽不一样 %和vw不一样大了
+				如果确保和屏幕一样宽度可以使用vw如果不确定 使用% */
+				/* padding: 20px ; */
+				>li{
+					/* width: 33.33%; */
+					width: 33.33vw;
+					>a{
+						display: block;
+						text-align: center;
+						>img{
+							width: 110px;
+						}
+						>span{
+							display: block;
+							color:@main-color;
+							font-size: 12px;
+						}
+						>del{
+							display: block;
+							color:#ccc;
+							font-size: 12px;
+						}
+					}
+				}
+			}
+		}
+	}
+	/* 京东超市 */
+	.jd-market{		
+		.market-title{
+			border-bottom: 1px solid #ccc;
+			>h4{
+				position: relative;
+				padding-left: 30px;
+				line-height: 30px;
+				font-size: 16px;
+				font-weight: normal;
+				&::before{
+					content:'';
+					position: absolute;
+					left: 20px;
+					top: 8px;
+					width: 4px;
+					height: 14px;
+					background-color: @main-color;
+				}
+			}
+		}
+		.market-content{
+			border-bottom: 1px solid #ccc;
+			.product{
+				display:flex;
+				.product-left{
+					width: 50vw;
+					a{
+						display: block;
+						img{
+							width: 100%;
+						}
+					}
+				}
+				.product-right{
+					width: 50vw;
+					a{
+						display: block;
+						img{
+							/* 因为父元素a有边框 内容变小了和屏幕50%不一样 不能使用vw单位 使用100% */
+							width: 100%;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* 底部区域 */
+#footer{
+	position: fixed;
+	width: 100vw;
+	bottom: 0;
+	left: 0;
+	z-index: 999;
+	background-color: #fff;
+	>ul{
+		display:flex;
+		>li{
+			width: 25vw;
+			>a{
+				display: block;
+				text-align: center;
+				>img{
+					width: 65px;
+					height: 50px;
+				}
+			}
+		}
+	}
+}
