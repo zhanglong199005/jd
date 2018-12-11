@@ -1,34 +1,22 @@
-// 写JS会写一个入口函数(jquery $(function){}) 页面加载的事件(原生JS是onload事件)
-
-/*on和addEventListener的区别
-1. on只能添加一个同类型事件
-2. 不能控制事件执行顺序
-3. 有些新增事件on里面的不支持(特别是移动端一些事件)
-
-1.addEventListener可以添加多个同类型的事件 
-2.可以控制事件的执行顺序 (冒泡 (false冒泡) 还是捕获 (true捕获))
-3. 可以添加新增的事件 (特别是移动端的一些事件)
-在移动端推荐使用addEventListener 方式添加事件   （在PC端低版本浏览器有兼容问题）
-*/
-
-window.addEventListener('load', function() {
+$(function() {
     /*1. 添加一个滚动条滚动的事件 去获取滚动的距离
     2. 获取轮播图元素的高度
     3. 计算透明度   滚动距离 / 轮播图高度
     4. 设置到header的rgba的a透明度上*/
     // 3. 获取轮播图元素 获取轮播图的高度
-    var slideHeight = document.querySelector('#slide').offsetHeight;
+    var slideHeight = $('#slide').height();
     // 5. 获取头部元素
-    var header = document.querySelector('#header');
+    var header = $('#header');
     // 1. 添加一个滚动条滚动的事件
-    window.addEventListener('scroll', function(e) {
+    $(window).on('scroll', function(e) {
         // 2. 获取滚动条滚动的距离  兼容多种浏览器可以使用兼容写法 || 短路运算符   第一个值有值返回第一个值 第一个值没有值  返回第二个值
-        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollTop = $(window).scrollTop();
         // 4. 计算透明度  滚动条距离/轮播图高度
         var opacity = scrollTop / slideHeight;
         // 5. 把透明度设置到头部的背景色 rgba 的a上
-        header.style.backgroundColor = 'rgba(222, 24, 27,' + opacity + ')';
+        header.css('background-color','rgba(222, 24, 27,' + opacity + ')');
     });
+
     // 后台的时间怎么来的： 使用未来的时间 假设今天中午12点    和 一个当前2018年12月8日10:47:48    
     // 用未来时间-当前的时间 求到时间差 作为一个总秒数返回给前端
     //获取未来的时间
@@ -44,7 +32,7 @@ window.addEventListener('load', function() {
     // 1. 定义一个总时间 2小时  1个小时60分钟  1 分钟是60秒    2小时就是7200秒 （从后台获取）
     var time = Math.floor((futureTime - nowTime) / 1000);
     // 3. 获取所有的span元素
-    var spans = document.querySelectorAll('.seckill-time span');
+    var spans = $('.seckill-time span');
     console.log(time);
     // 倒计时功能
     //  1. 需要有一个总的倒计时的事件(请求数据 后台返回回来的)
@@ -88,38 +76,6 @@ window.addEventListener('load', function() {
         }
     }, 1000);
 
-
-    // 回顾原生的轮播图
-    // 1. 获取ul
-    // 2. 定义一个定时器每个1秒让ul切换一张图片  定义一个索引  每隔1秒索引++  
-    // 3. 计算ul位移的距离 索引*-100vw宽度
-    // 4. 设置给ul位移   添加过渡 慢慢位移
-    // var slideUl = document.querySelector('#slide ul');
-    // // 定义一个索引  每个1秒索引++  
-    // var index = 1;
-    // setInterval(function() {
-    //     // 定义一个索引  每个1秒索引++  
-    //     index++;
-    //     //计算位移距离
-    //     var translateX = (index * -100) + 'vw';
-    //     // 把位移设置到ul上
-    //     slideUl.style.transform = 'translateX(' + translateX + ')';
-    //     slideUl.style.transition = 'all 0.5s';
-    // }, 1000);
-    // // 过渡完成事件
-    // slideUl.addEventListener('transitionend', function() {
-    //     if (index >= 9) {
-    //         index = 1;
-    //         //计算位移距离
-    //         var translateX = (index * -100) + 'vw';
-    //         // 把位移设置到ul上
-    //         slideUl.style.transform = 'translateX(' + translateX + ')';
-    //         // 超过了后迅速回去清除过渡
-    //         slideUl.style.transition = 'none';
-    //     }
-    // });
-
-
     // 初始化swiper插件  第一个参数轮播图大容器选择器  第二个参数是对象 是轮播图一些配置项
     new Swiper('.swiper-container', {
         // 方向 水平
@@ -143,4 +99,4 @@ window.addEventListener('load', function() {
         // 3d立体效果
         // effect : 'cube'
     });
-}, false);
+});

@@ -53,9 +53,15 @@ html {
 }
 
 body {
+   /*  1rem == 100px
+   100px == 1rem
+   200px == 2rem
+   14px == 0.14rem 
+   要把之前px转成rem 因为参照375写代码的  375根元素100px 
+   把px / 100倍  === px对应的rem*/
     margin: 0;
     /* 默认网页字体都使用了14px */
-    font-size: 14px;
+    font-size: 0.14rem;
     line-height: 1.5;
     color: #333333;
     background-color: white;
@@ -307,15 +313,15 @@ h3 {
 }
 
 h1 {
-    font-size: 18px;
+    font-size: 0.18rem;
 }
 
 h2 {
-    font-size: 16px;
+    font-size: 0.16rem;
 }
 
 h3 {
-    font-size: 14px;
+    font-size: 0.14rem;
 }
 
 input::-moz-placeholder,
@@ -373,7 +379,7 @@ textarea::-webkit-input-placeholder {
         jd官网在里面嵌套一个span给span添加margin 挤到中间(这种不好) */
         /* 大的精灵图  大图是2倍图是400*400 使用缩小一半变成200*200*/
         background-image: url(../images/sprites.png);
-        background-size: 200px 200px;
+        background-size: 2rem 2rem;
         /* 这两属性一般会结合起来使用 为了让背景图也跟着padding来动 */
         /* 背景图定位起点 默认padding-box  设成content-box参照内容来 作为背景定位起点 */
         background-origin: content-box;
@@ -381,51 +387,51 @@ textarea::-webkit-input-placeholder {
         background-clip: content-box;
     }
     .icon-logo {
-        width: 80px;
-        height: 45px;
-        padding: 10px;
-        background-position: 0 -108px;
+        width: 0.8rem;
+        height: 0.45rem;
+        padding: 0.1rem;
+        background-position: 0 -1.08rem;
     }
     .icon-back {
-        width: 40px;
-        height: 40px;
-        background-position: -20px 0px;
-        padding: 10px;
+        width: 0.4rem;
+        height: 0.4rem;
+        background-position: -0.2rem 0px;
+        padding: 0.1rem;
     }
     form {
         flex: 1;
-        padding: 5px 0;
+        padding: 0.05rem 0;
         position: relative;
         /* 搜索图标 */
         .icon-search {
-            width: 20px;
-            height: 20px;
+            width: 0.2rem;
+            height: 0.2rem;
             background-image: url(../images/sprites.png);
-            background-size: 200px 200px;
-            background-position: -60px -108px;
+            background-size: 2rem 2rem;
+            background-position: -0.6rem -1.08rem;
             position: absolute;
-            left: 5px;
-            top: 12px;
+            left: 0.05rem;
+            top: 0.12rem;
         }
         input {
             width: 100%;
-            height: 35px;
-            border-radius: 16px;
-            padding-left: 30px;
+            height: 0.35rem;
+            border-radius: 0.16rem;
+            padding-left: 0.3rem;
         }
     }
     .login {
-        width: 50px;
-        height: 45px;
+        width: 0.5rem;
+        height: 0.45rem;
         color: #fff;
         text-align: center;
-        line-height: 45px;
+        line-height: 0.45rem;
     }
     .icon-menu {
-        width: 40px;
-        height: 40px;
-        background-position: -60px 0px;
-        padding: 10px;
+        width: 0.4rem;
+        height: 0.4rem;
+        background-position: -0.6rem 0px;
+        padding: 0.1rem;
     }
 }
 
@@ -450,8 +456,8 @@ textarea::-webkit-input-placeholder {
                 display: block;
                 text-align: center;
                 >img {
-                    width: 65px;
-                    height: 50px;
+                    width: 0.65rem;
+                    height: 0.5rem;
                 }
             }
         }
